@@ -1,6 +1,8 @@
 #include <Windows.h>
 #include"resource.h"
 
+CONST CHAR g_sz_INVITE[] = "Введите имя пользователя";
+
 BOOL CALLBACK DlgProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 
 INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpCmdLine, INT nCmdShow)
@@ -28,10 +30,41 @@ BOOL CALLBACK DlgProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 	switch (uMsg)
 	{
 	case WM_INITDIALOG: //Выолняется один раз при запуске окна.
+	{
+		HICON hIcon = LoadIcon(GetModuleHandle(NULL), MAKEINTRESOURCE(IDI_ICON1));
+		SendMessage(hwnd, WM_SETICON, 0, (LPARAM)hIcon);
+		//SetFocus(GetDlgItem(hwnd, IDC_EDIT_LOGIN));
+		SendMessage(GetDlgItem(hwnd, IDC_EDIT_LOGIN), WM_SETTEXT, 0, (LPARAM)g_sz_INVITE);
+	}
 		break;
 	case WM_COMMAND:   //Обрабатывает команды с клавиатуры и мыши.
 		switch (LOWORD(wParam))
 		{
+		case IDC_EDIT_LOGIN:
+		{
+			HWND hEditLogin = GetDlgItem(hwnd, IDC_EDIT_LOGIN);
+			CONST INT SIZE = 256;
+			CHAR sz_buffer[SIZE] = "";
+			SendMessage(hEditLogin, WM_GETTEXT, SIZE, (LPARAM)sz_buffer);
+			if (HIWORD(wParam) == EN_SETFOCUS && strcmp(sz_buffer, g_sz_INVITE) == 0)
+			{
+				SendMessage(hEditLogin, WM_SETTEXT, 0, (LPARAM)"");
+			}
+			if (HIWORD(wParam) == EN_KILLFOCUS && strcmp(sz_buffer, "") == 0)
+			   SendMessage(hEditLogin, WM_SETTEXT, 0, (LPARAM)g_sz_INVITE);
+		}
+		break;
+		case IDC_BUTTON_COPY:
+		{
+			CONST INT SIZE = 256;
+			CHAR sz_buffer[SIZE] = {};
+			HWND hEditLogin = GetDlgItem(hwnd, IDC_EDIT_LOGIN);
+			HWND hEditPassword = GetDlgItem(hwnd, IDC_EDIT_PASSWORD);
+			SendMessage(hEditLogin, WM_GETTEXT, SIZE, (LPARAM)sz_buffer);
+			SendMessage(hEditPassword, WM_SETTEXT, 0, (LPARAM)sz_buffer);
+		}
+		break;
+
 		case IDOK:
 			MessageBox(NULL, "Была нажата кнока 'OK'", "Info", MB_OK | MB_ICONINFORMATION);
 			break;
