@@ -1,4 +1,5 @@
-﻿#include<Windows.h>
+﻿#define _CRT_SECURE_NO_WARNINGS
+#include<Windows.h>
 #include"resource.h"
 
 
@@ -7,6 +8,7 @@ CONST CHAR* g_sz_VALUES[] = { "This", "is", "my", "firse", "List", "Box" };
 BOOL CALLBACK DlgProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 BOOL CALLBACK DlgProcAdd(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 BOOL CALLBACK DlgProcEdit(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
+VOID SaveList(HWND hwnd, CONST CHAR filename[]);
 
 INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpCmdLine, INT nCmdSow)
 {
@@ -71,11 +73,13 @@ BOOL CALLBACK DlgProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 		}
 			break;
 		case IDCANCEL:
+			SaveList(hwnd, "List.txt");
 			EndDialog(hwnd, 0);
 		}
 	}
 	break;
 	case WM_CLOSE:
+		SaveList(hwnd, "List.txt");
 		EndDialog(hwnd, 0);
 	}
 	return FALSE;
@@ -167,4 +171,38 @@ BOOL CALLBACK DlgProcEdit(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 		EndDialog(hwnd, 0);
 	}
 	return FALSE;	
+}
+VOID SaveList(HWND hwnd, CONST CHAR filename[])
+{
+	CONST INT SIZE = 32768;
+	CHAR sz_buffer[SIZE] = {};
+
+	HWND hList = GetDlgItem(hwnd, IDC_LIST1);
+	INT n = SendMessage(hList, LB_GETCOUNT, 0, 0);
+
+	for (int i = 0; i < n; i++)
+	{
+		CHAR sz_item[256] = {};
+		SendMessage(hList, LB_GETTEXT, i, (LPARAM)sz_item);
+		strcat(sz_buffer, sz_item);
+		strcat(sz_buffer, "\n");
+		/*
+		strcat(sz_buffer, sz_item);
+		strcat(sz_buffer, "\n");
+		*/
+	}
+
+	HANDLE hFile = CreateFile
+	(
+		filename,
+		GENERIC_WRITE,
+		0,
+		NULL,
+		CREATE_ALWAYS,
+		FILE_ATTRIBUTE_NORMAL,
+		NULL
+	);
+	DWORD dwBytesWritten = 0;
+	WriteFile(hFile, sz_buffer, strlen(sz_buffer), &dwBytesWritten, NULL);
+	CloseHandle(hFile);
 }
