@@ -1,5 +1,6 @@
 ﻿//MainWindow
 #include <Windows.h>
+#include "resource.h"
 
 CONST CHAR g_sz_WINDOW_CLASS[] = "My first window";
 
@@ -19,12 +20,23 @@ INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpCmdLine, IN
 	wClass.cbWndExtra = 0;
 
 	// Инициализируем внешний вид окон:
-	wClass.hIcon = LoadIcon(NULL, IDI_APPLICATION);
-	wClass.hIconSm = LoadIcon(NULL, IDI_APPLICATION);
-	wClass.hCursor = LoadCursor(NULL, IDC_ARROW);
+	wClass.hIconSm = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_ICON_BITCOIN));
+	wClass.hIcon = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_ICON_PALM));
+	//wClass.hIcon = (HICON)LoadImage(hInstance, "bitcoin.ico", IMAGE_ICON, LR_DEFAULTSIZE, LR_DEFAULTSIZE, LR_LOADFROMFILE);
+	//wClass.hIconSm = (HICON)LoadImage(hInstance, "palm.ico", IMAGE_ICON, LR_DEFAULTSIZE, LR_DEFAULTSIZE, LR_LOADFROMFILE);
+
+	wClass.hCursor = (HCURSOR)LoadImage
+	(
+		hInstance, 
+		"gi\\gi_link.cur",
+		IMAGE_CURSOR,
+		LR_DEFAULTSIZE, LR_DEFAULTSIZE,
+		LR_LOADFROMFILE
+	);
+	//wClass.hCursor = LoadCursor(hInstance, MAKEINTRESOURCE(IDC_CURSOR1));
 	wClass.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
 
-	//Инициализация системных переменныч:
+	//Инициализация системных переменных:
 	wClass.hInstance = hInstance;
 	wClass.lpszClassName = g_sz_WINDOW_CLASS;
 	wClass.lpszMenuName = NULL;
@@ -43,7 +55,7 @@ INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpCmdLine, IN
 		g_sz_WINDOW_CLASS,  // Заголовок окна.
 		WS_OVERLAPPEDWINDOW,//Стиль окна. Стили всезда зависят от класса окна.WS_OVERLAPPEDWINDOW - главное окно.
 		CW_USEDEFAULT, CW_USEDEFAULT, //Position - начальная позиция.
-		CW_USEDEFAULT, CW_USEDEFAULT, //Размер окна.
+		640, 480, //Размер окна.
 		NULL, // Наличие родителького окна.
 		NULL, // Для главного окна это ResourceID главного меню, для дочернего окна (Control) это ResourceID 
 		//дочернего окна, наример (IDC_BUTTON_COPY).
@@ -55,11 +67,20 @@ INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpCmdLine, IN
 		MessageBox(NULL, "Windows creation failed", NULL, MB_OK | MB_ICONERROR);
 		return 0;
 	}
-	ShowWindow(hwnd, nCmdShow);
-	UpdateWindow(hwnd);
+	ShowWindow(hwnd, nCmdShow); // Создает режим отображения окнаб например,"Развернуто на весь экран",
+	                            // "Свернуто в окно", "Свернуто на анель задач.
+	UpdateWindow(hwnd);         // Обновляет рабочую облать окна отправляя сообщение WM_PAINT, 
+	                            // если рабочая область окна не пустая.
 
 	// 3. Запуск цикла сообщений.
-	return 0;
+	MSG(msg); //https://learn.microsoft.com/en-us/windows/win32/api/winuser/ns-winuser-msg
+	while (GetMessage(&msg, NULL, 0, 0) > 0)
+	{
+		TranslateMessage(&msg); // Преобразует сообщения виртуальных клавиш в символьные сообщения.
+		DispatchMessage(&msg);  // Отравляет сообщение в процедуру окна.
+	}
+	
+	return msg.wParam; //https://learn.microsoft.com/en-us/windows/win32/winmsg/using-messages-and-message-queues
 }
 LRESULT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {

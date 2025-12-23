@@ -1,0 +1,12 @@
+﻿[Hand]
+Path=gi_link.cur
+
+[Wait]
+Path=gi_busy.cur
+
+[AppStarting]
+Path=gi_working.cur
+
+[Arrow]
+Path=gi_arrow.cur
+
