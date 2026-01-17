@@ -236,6 +236,18 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 		SetSkin(hwnd, "square_blue");
 	}
 	break;
+	case WM_CTLCOLOREDIT:   // Меняем цвет, любые действия с цветом выполняются через HDC - девайсконтрол
+	{
+		HDC hdc = (HDC)wParam;// С ообщением WM_CTLCOLOREDIT в 'wParam' принимается HDC элемента EditColor
+		//SetBkMode(hdc, TRANSPARENT); //Делаем фон hEdit прозрачным
+		SetBkColor(hdc, RGB(0, 0, 100));
+		SetTextColor(hdc, RGB(250, 0, 0));
+		HBRUSH hBrush = CreateSolidBrush(RGB(0, 0, 150));
+		SetClassLongPtr(hwnd, GCLP_HBRBACKGROUND, (LONG_PTR)hBrush);
+		SendMessage(hwnd, WM_ERASEBKGND, wParam, 0);
+		return (LRESULT)hBrush;
+	}
+		break;
 	case WM_COMMAND:
 	{
 		static DOUBLE a = DBL_MIN, b = DBL_MIN; // Операнды
