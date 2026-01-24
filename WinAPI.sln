@@ -13,6 +13,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MainWindow", "MainWindow\Ma
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Calc", "Calc\Calc.vcxproj", "{D900EE99-74E5-43B7-896E-8A49CC6F7E2E}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Resource-onlyDLL", "Resource-onlyDLL\Resource-onlyDLL.vcxproj", "{8F0E9AE3-83E9-410A-BCE3-3631F1E1CAFD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -61,6 +63,14 @@ Global
 		{D900EE99-74E5-43B7-896E-8A49CC6F7E2E}.Release|x64.Build.0 = Release|x64
 		{D900EE99-74E5-43B7-896E-8A49CC6F7E2E}.Release|x86.ActiveCfg = Release|Win32
 		{D900EE99-74E5-43B7-896E-8A49CC6F7E2E}.Release|x86.Build.0 = Release|Win32
+		{8F0E9AE3-83E9-410A-BCE3-3631F1E1CAFD}.Debug|x64.ActiveCfg = Debug|x64
+		{8F0E9AE3-83E9-410A-BCE3-3631F1E1CAFD}.Debug|x64.Build.0 = Debug|x64
+		{8F0E9AE3-83E9-410A-BCE3-3631F1E1CAFD}.Debug|x86.ActiveCfg = Debug|Win32
+		{8F0E9AE3-83E9-410A-BCE3-3631F1E1CAFD}.Debug|x86.Build.0 = Debug|Win32
+		{8F0E9AE3-83E9-410A-BCE3-3631F1E1CAFD}.Release|x64.ActiveCfg = Release|x64
+		{8F0E9AE3-83E9-410A-BCE3-3631F1E1CAFD}.Release|x64.Build.0 = Release|x64
+		{8F0E9AE3-83E9-410A-BCE3-3631F1E1CAFD}.Release|x86.ActiveCfg = Release|Win32
+		{8F0E9AE3-83E9-410A-BCE3-3631F1E1CAFD}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
