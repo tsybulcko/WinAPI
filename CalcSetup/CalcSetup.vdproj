@@ -21,6 +21,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_468E9DECAA3B43BA816B1217B739CA95"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_72B3807FB3154A598A3DCD3AF9303539"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -55,6 +61,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
         "Release"
         {
@@ -71,6 +85,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
     }
     "Deployable"
@@ -98,6 +120,26 @@
             "TargetName" = "8:square_blue.dll"
             "Tag" = "8:"
             "Folder" = "8:_2000EBAFB5364654B2451ECF1BF8AAE3"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_468E9DECAA3B43BA816B1217B739CA95"
+            {
+            "SourcePath" = "8:..\\Calc\\calc1_43473.ico"
+            "TargetName" = "8:calc1_43473.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_5283D601402040F886649434278FCFA1"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -206,6 +248,17 @@
                     "Condition" = "8:"
                     "Transitive" = "11:FALSE"
                     "Property" = "8:_B35CAEF1F97341029D8B41B0FAC22AE7"
+                        "Folders"
+                        {
+                        }
+                    }
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_5283D601402040F886649434278FCFA1"
+                    {
+                    "Name" = "8:ico"
+                    "AlwaysCreate" = "11:FALSE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_38DB5F9D967347E289BD56C7BEF64200"
                         "Folders"
                         {
                         }
@@ -371,7 +424,7 @@
             "Target" = "8:_7A4929F467FB4477840BD8E86F7807DC"
             "Folder" = "8:_60E5F155F6374B3FABFA51AF342B64E5"
             "WorkingFolder" = "8:_2000EBAFB5364654B2451ECF1BF8AAE3"
-            "Icon" = "8:"
+            "Icon" = "8:_468E9DECAA3B43BA816B1217B739CA95"
             "Feature" = "8:"
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_6E9D997430BB4A5099A81B6B50A23FBE"
@@ -385,7 +438,7 @@
             "Target" = "8:_7A4929F467FB4477840BD8E86F7807DC"
             "Folder" = "8:_0BB3A519DA314F7780E22C085268F1FE"
             "WorkingFolder" = "8:_2000EBAFB5364654B2451ECF1BF8AAE3"
-            "Icon" = "8:"
+            "Icon" = "8:_468E9DECAA3B43BA816B1217B739CA95"
             "Feature" = "8:"
             }
         }
